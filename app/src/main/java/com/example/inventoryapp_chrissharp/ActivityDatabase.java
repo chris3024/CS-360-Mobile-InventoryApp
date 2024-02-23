@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -32,7 +33,7 @@ public class ActivityDatabase extends AppCompatActivity {
     CustomAdapter adapter;
 
     DatabaseHelper myDB;
-    ArrayList<String> id, itemName, itemQuantity;
+    ArrayList<String> itemId, itemName, itemQuantity;
 
     private final int SMS_PERMISSION_CODE = 1;
 
@@ -52,13 +53,23 @@ public class ActivityDatabase extends AppCompatActivity {
 
         itemName = new ArrayList<>();
         itemQuantity = new ArrayList<>();
+        itemId = new ArrayList<>();
 
 
         storeDataInArrays();
 
-        adapter = new CustomAdapter(ActivityDatabase.this, itemName, itemQuantity);
+        adapter = new CustomAdapter(ActivityDatabase.this, this, itemId, itemName,
+                itemQuantity);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ActivityDatabase.this));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            recreate();
+        }
     }
 
     void storeDataInArrays() {
@@ -67,6 +78,7 @@ public class ActivityDatabase extends AppCompatActivity {
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
         }else {
             while (cursor.moveToNext()) {
+                itemId.add(cursor.getString(0));
                 itemName.add(cursor.getString(1));
                 itemQuantity.add(cursor.getString(2));
             }

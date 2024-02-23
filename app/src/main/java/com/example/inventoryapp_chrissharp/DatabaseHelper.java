@@ -103,14 +103,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void updateData(String item, String itemName, Integer itemQuantity) {
+    void updateData(String row_id, String itemName, Integer itemQuantity) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_ITEM_NAME, itemName);
         cv.put(COLUMN_QUANTITY, itemQuantity);
 
-        long result = db.update(TABLE_NAME_INVENTORY, cv, "item_name = ?", new String[]{item});
+        long result = db.update(TABLE_NAME_INVENTORY, cv, "_id = ?", new String[]{row_id});
         if (result == -1){
             Toast.makeText(context, "Failed to Update", Toast.LENGTH_SHORT).show();
         }else {
@@ -119,9 +119,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    void deleteOneRow(String itemName) {
+    void deleteOneRow(String row_id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete(TABLE_NAME_INVENTORY,"item_name=?", new String[]{ itemName } );
+        long result = db.delete(TABLE_NAME_INVENTORY,"_id=?", new String[]{ row_id } );
 
         if (result == -1){
             Toast.makeText(context, "Failed to Delete", Toast.LENGTH_SHORT).show();

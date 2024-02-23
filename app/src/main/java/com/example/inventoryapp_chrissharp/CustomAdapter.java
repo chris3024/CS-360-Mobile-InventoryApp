@@ -1,5 +1,6 @@
 package com.example.inventoryapp_chrissharp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -20,12 +21,15 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList itemName, itemQuantity;
+    private Activity activity;
+    private ArrayList itemId, itemName, itemQuantity;
 
 
 
-    CustomAdapter(Context context, ArrayList<String> itemName, ArrayList<String> itemQuantity){
+    CustomAdapter(Activity activity, Context context, ArrayList itemId, ArrayList itemName, ArrayList itemQuantity){
+        this.activity = activity;
         this.context = context;
+        this.itemId = itemId;
         this.itemName = itemName;
         this.itemQuantity = itemQuantity;
 
@@ -48,15 +52,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         holder.itemQuantity.setText(String.valueOf(itemQuantity.get(position)));
         holder.editText.setOnClickListener(v -> {
             Intent intent = new Intent(context, ActivityUpdate.class);
+            intent.putExtra("id", String.valueOf(itemId.get(holder.getAdapterPosition())));
             intent.putExtra("Item Name", String.valueOf(itemName.get(holder.getAdapterPosition())));
             intent.putExtra("Item Quantity", String.valueOf(itemQuantity.get(holder.getAdapterPosition())));
-            context.startActivity(intent);
+            activity.startActivityForResult(intent, 1);
         });
     }
 
     @Override
     public int getItemCount() {
-        return itemName.size();
+        return itemId.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

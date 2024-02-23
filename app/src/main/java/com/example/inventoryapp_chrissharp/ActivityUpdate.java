@@ -13,7 +13,7 @@ public class ActivityUpdate extends AppCompatActivity {
     EditText itemNameInput, itemQuantityInput;
     Button updateButton, deleteButton;
 
-    String  itemName, itemQuantity;
+    String  id, itemName, itemQuantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class ActivityUpdate extends AppCompatActivity {
             DatabaseHelper myDB = new DatabaseHelper(ActivityUpdate.this);
             itemName = itemNameInput.getText().toString().trim();
             itemQuantity = itemQuantityInput.getText().toString().trim();
-            myDB.updateData(itemName, itemName, Integer.valueOf(itemQuantity));
+            myDB.updateData(id, itemName, Integer.valueOf(itemQuantity));
 
         });
 
@@ -49,6 +49,7 @@ public class ActivityUpdate extends AppCompatActivity {
         if (getIntent().hasExtra("Item Name") && getIntent().hasExtra("Item Quantity")) {
 
             //Getting data from the passed Intent
+            id = getIntent().getStringExtra("id");
             itemName = getIntent().getStringExtra("Item Name");
             itemQuantity = getIntent().getStringExtra("Item Quantity");
 
@@ -74,7 +75,7 @@ public class ActivityUpdate extends AppCompatActivity {
         builder.setMessage(" Are you sure you want to delete " + itemName + " ?");
         builder.setPositiveButton("Yes", (dialog, which) -> {
             DatabaseHelper myDB = new DatabaseHelper(ActivityUpdate.this);
-            myDB.deleteOneRow(itemName);
+            myDB.deleteOneRow(id);
             finish();
         });
         builder.setNegativeButton("No", (dialog, which) -> {
