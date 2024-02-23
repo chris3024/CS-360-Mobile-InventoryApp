@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+
+// Helpful information was provided by https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
+
 // The main class that handles the database information
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -34,6 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     // Creating the database
+    // Contains two tables (Inventoried items and User information)
     @Override
     public void onCreate(SQLiteDatabase db) {
         String queryInventory = "CREATE TABLE " + TABLE_NAME_INVENTORY +
@@ -56,7 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    // Method to add the data to the database, returns a message on fail/pass
+    // Method to add the items to the database, returns a message on fail/pass
     void addInventory(String itemName, Integer quantity) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -91,6 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    // reading all the data from the database
     Cursor readAllData() {
         String query = "SELECT * FROM " + TABLE_NAME_INVENTORY;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -103,6 +108,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    // Method to update the data in the database
     void updateData(String row_id, String itemName, Integer itemQuantity) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -119,6 +125,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    // deleting the data from the database
     void deleteOneRow(String row_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME_INVENTORY,"_id=?", new String[]{ row_id } );
@@ -130,6 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // checking the user login information against what is present in the database
     public boolean checkUserLogin(String userName, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         String whereClause = "user_name= ? AND password = ?";

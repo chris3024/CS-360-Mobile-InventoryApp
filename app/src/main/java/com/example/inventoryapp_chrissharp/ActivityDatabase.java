@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-
+// Some code taken from https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
 public class ActivityDatabase extends AppCompatActivity {
 
 
@@ -46,7 +46,7 @@ public class ActivityDatabase extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
 
-
+        // initializing the required data and view controllers
         recyclerView = findViewById(R.id.recyclerView);
 
         myDB = new DatabaseHelper(ActivityDatabase.this);
@@ -55,7 +55,7 @@ public class ActivityDatabase extends AppCompatActivity {
         itemQuantity = new ArrayList<>();
         itemId = new ArrayList<>();
 
-
+        // storing the data from the database in Arrays to display
         storeDataInArrays();
 
         adapter = new CustomAdapter(ActivityDatabase.this, this, itemId, itemName,
@@ -64,6 +64,7 @@ public class ActivityDatabase extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(ActivityDatabase.this));
     }
 
+    // Method to refresh the adapter after an item is deleted/updated
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -72,6 +73,7 @@ public class ActivityDatabase extends AppCompatActivity {
         }
     }
 
+    // Storing the data in arrays to display
     void storeDataInArrays() {
         Cursor cursor = myDB.readAllData();
         if (cursor.getCount() == 0) {
@@ -88,7 +90,7 @@ public class ActivityDatabase extends AppCompatActivity {
 
 
 
-
+    // menu inflater for options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -96,6 +98,7 @@ public class ActivityDatabase extends AppCompatActivity {
         return true;
     }
 
+    // Setting actions for the menu buttons to accomplish their tasks
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_add_item){
@@ -116,7 +119,8 @@ public class ActivityDatabase extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    // Next two methods deal with getting the permissions to send SMS messages for the inventory and
+    // to display informational text
     private void requestSMSPermission() {
         if(ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.SEND_SMS)) {

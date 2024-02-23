@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+// Code examples that was used as a base.. https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
 public class ActivityUpdate extends AppCompatActivity {
 
     EditText itemNameInput, itemQuantityInput;
@@ -30,6 +31,7 @@ public class ActivityUpdate extends AppCompatActivity {
         updateButton = findViewById(R.id.buttonUpdate);
         deleteButton = findViewById(R.id.buttonDelete);
 
+        // getting and setting the data from the parent activity
         getAndSetIntentData();
 
         updateButton.setOnClickListener(v -> {
@@ -69,6 +71,7 @@ public class ActivityUpdate extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
+    // Dialog box to get deletion confirmation
     void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete " + itemName + " ?");

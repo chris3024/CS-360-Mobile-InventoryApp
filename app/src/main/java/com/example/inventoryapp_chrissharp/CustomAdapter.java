@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 // Adapter that takes the CardView and adapts it to the RecyclerView to display the data
+// Code is a slightly modified version from
+// "https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ"
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
     private Context context;
@@ -25,7 +27,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     private ArrayList itemId, itemName, itemQuantity;
 
 
-
+    // Adapter constructor
     CustomAdapter(Activity activity, Context context, ArrayList itemId, ArrayList itemName, ArrayList itemQuantity){
         this.activity = activity;
         this.context = context;
