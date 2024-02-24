@@ -39,6 +39,7 @@ public class ActivityUpdate extends AppCompatActivity {
             itemName = itemNameInput.getText().toString().trim();
             itemQuantity = itemQuantityInput.getText().toString().trim();
             myDB.updateData(id, itemName, Integer.valueOf(itemQuantity));
+            finish();
 
         });
 

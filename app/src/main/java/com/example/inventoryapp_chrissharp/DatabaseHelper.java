@@ -149,4 +149,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return count > 0;
     }
+
+    public boolean checkInventory(String itemName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereClause = "item_name = ?";
+        String[] whereArgs = new String[]{itemName};
+
+        Cursor cursor = db.query(TABLE_NAME_INVENTORY, new String[]{"item_name"}, whereClause,
+                whereArgs,null,null,null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count > 0;
+    }
 }

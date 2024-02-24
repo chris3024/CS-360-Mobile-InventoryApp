@@ -3,6 +3,7 @@ package com.example.inventoryapp_chrissharp;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -31,7 +32,7 @@ public class ActivityDatabase extends AppCompatActivity {
 
     RecyclerView recyclerView;
     CustomAdapter adapter;
-
+    Activity activity;
     DatabaseHelper myDB;
     ArrayList<String> itemId, itemName, itemQuantity;
 
@@ -68,7 +69,7 @@ public class ActivityDatabase extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
+        if(requestCode == 1 || resultCode == RESULT_OK ){
             recreate();
         }
     }
@@ -83,8 +84,14 @@ public class ActivityDatabase extends AppCompatActivity {
                 itemId.add(cursor.getString(0));
                 itemName.add(cursor.getString(1));
                 itemQuantity.add(cursor.getString(2));
+
             }
         }
+    }
+
+    public void addToInventory() {
+        Intent intent = new Intent(this, ActivityAdd.class);
+        startActivity(intent);
     }
 
 
@@ -102,8 +109,8 @@ public class ActivityDatabase extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_add_item){
-            Intent intent = new Intent(this, ActivityAdd.class);
-            startActivity(intent);
+            addToInventory();
+            return true;
         } else if (item.getItemId() == R.id.action_exit) {
             super.finish();
             return true;
@@ -118,6 +125,8 @@ public class ActivityDatabase extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     // Next two methods deal with getting the permissions to send SMS messages for the inventory and
     // to display informational text
