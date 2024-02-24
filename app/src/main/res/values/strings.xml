@@ -22,5 +22,6 @@
     <string name="logo">Logo\n</string>
     <string name="update">Update</string>
     <string name="edit">Edit</string>
+    <string name="edit_item_details">Edit Item Details</string>
 
 </resources>

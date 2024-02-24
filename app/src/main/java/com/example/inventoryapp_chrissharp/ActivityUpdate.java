@@ -8,12 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 // Code examples that was used as a base.. https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
 public class ActivityUpdate extends AppCompatActivity {
 
+    DatabaseHelper myDB;
     EditText itemNameInput, itemQuantityInput;
     Button updateButton, deleteButton;
-
     String  id, itemName, itemQuantity;
 
     @Override
@@ -34,9 +36,10 @@ public class ActivityUpdate extends AppCompatActivity {
         // getting and setting the data from the parent activity
         getAndSetIntentData();
 
+        myDB = new DatabaseHelper(ActivityUpdate.this);
+
         updateButton.setOnClickListener(v -> {
-            DatabaseHelper myDB = new DatabaseHelper(ActivityUpdate.this);
-            itemName = itemNameInput.getText().toString().trim();
+            itemName = itemNameInput.getText().toString().toUpperCase(Locale.ROOT).trim();
             itemQuantity = itemQuantityInput.getText().toString().trim();
             myDB.updateData(id, itemName, Integer.valueOf(itemQuantity));
             finish();
@@ -78,7 +81,6 @@ public class ActivityUpdate extends AppCompatActivity {
         builder.setTitle("Delete " + itemName + " ?");
         builder.setMessage(" Are you sure you want to delete " + itemName + " ?");
         builder.setPositiveButton("Yes", (dialog, which) -> {
-            DatabaseHelper myDB = new DatabaseHelper(ActivityUpdate.this);
             myDB.deleteOneRow(id);
             finish();
         });

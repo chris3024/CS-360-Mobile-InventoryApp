@@ -6,8 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -21,13 +20,16 @@ import java.util.ArrayList;
 // "https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ"
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
-    private Context context;
-    private Activity activity;
-    private ArrayList itemId, itemName, itemQuantity;
+    private final Context context;
+    private final Activity activity;
+    private final ArrayList<String> itemId;
+    private final ArrayList<String> itemName;
+    private final ArrayList<String> itemQuantity;
 
 
     // Adapter constructor
-    CustomAdapter(Activity activity, Context context, ArrayList itemId, ArrayList itemName, ArrayList itemQuantity){
+    CustomAdapter(Activity activity, Context context, ArrayList<String> itemId, ArrayList<String> itemName,
+                  ArrayList<String> itemQuantity){
         this.activity = activity;
         this.context = context;
         this.itemId = itemId;
@@ -65,17 +67,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         return itemId.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView itemName, itemQuantity;
-        Button editText;
+        ImageButton editText;
 
         public ViewHolder(@NonNull View view) {
             super(view);
 
             itemName = view.findViewById(R.id.item_name);
             itemQuantity = view.findViewById(R.id.item_quantity);
-            editText = view.findViewById(R.id.buttonEdit);
+            editText = view.findViewById(R.id.imageButtonEdit);
         }
     }
 }
