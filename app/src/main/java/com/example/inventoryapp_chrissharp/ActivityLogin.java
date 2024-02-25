@@ -34,6 +34,7 @@ public class ActivityLogin extends AppCompatActivity {
         userName.addTextChangedListener(LoginWatcher);
         userPassword.addTextChangedListener(LoginWatcher);
 
+        // Login to the application, if new user ask to register user
         buttonLogin.setOnClickListener(v -> {
 
             String user = userName.getText().toString().trim();
@@ -61,8 +62,6 @@ public class ActivityLogin extends AppCompatActivity {
         builder.setPositiveButton("Yes", (dialog, which) -> {
             String nameUser = userName.getText().toString().trim();
             String passwordUser = userPassword.getText().toString().trim();
-
-            DatabaseHelper myDB = new DatabaseHelper(ActivityLogin.this);
             myDB.addUser(nameUser, passwordUser);
 
             Intent intent = new Intent(ActivityLogin.this, ActivityLogin.class);
@@ -75,6 +74,7 @@ public class ActivityLogin extends AppCompatActivity {
         builder.create().show();
     }
 
+    // Textwatcher to disable/enable button
     TextWatcher LoginWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {

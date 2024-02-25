@@ -56,6 +56,7 @@ public class ActivityAdd extends AppCompatActivity {
 
     }
 
+    // Alertbox for adding item to inventory
     void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirm Add Item To Inventory?");
@@ -81,6 +82,7 @@ public class ActivityAdd extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
+    // Textwatcher for button
     TextWatcher LoginWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {

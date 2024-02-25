@@ -3,7 +3,6 @@ package com.example.inventoryapp_chrissharp;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,8 +12,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
-
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +29,6 @@ public class ActivityDatabase extends AppCompatActivity {
 
     RecyclerView recyclerView;
     CustomAdapter adapter;
-    Activity activity;
     DatabaseHelper myDB;
     ArrayList<String> itemId, itemName, itemQuantity;
 
@@ -89,6 +85,7 @@ public class ActivityDatabase extends AppCompatActivity {
         }
     }
 
+    // method calling activity to add to inventory
     public void addToInventory() {
         Intent intent = new Intent(this, ActivityAdd.class);
         startActivity(intent);

@@ -38,6 +38,7 @@ public class ActivityUpdate extends AppCompatActivity {
 
         myDB = new DatabaseHelper(ActivityUpdate.this);
 
+        // updating the data for the item
         updateButton.setOnClickListener(v -> {
             itemName = itemNameInput.getText().toString().toUpperCase(Locale.ROOT).trim();
             itemQuantity = itemQuantityInput.getText().toString().trim();

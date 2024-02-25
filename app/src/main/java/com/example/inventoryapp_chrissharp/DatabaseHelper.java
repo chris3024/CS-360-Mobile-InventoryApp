@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 // The main class that handles the database information
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private Context context;
+    private final Context context;
     private static final String DATABASE_NAME = "Inventory.db";
     private static final int DATABASE_VERSION = 1;
 
