@@ -1,7 +1,8 @@
 # CS-360
 ## The instructions said upload zip, but the file size was to large. So I committed and pushed project to repo.
 
-### Briefly summarize the requirements and goals of the app you developed. What user needs was this app designed to address?
+#### Briefly summarize the requirements and goals of the app you developed. What user needs was this app designed to address?
+##### The
 ### What screens and features were necessary to support user needs and produce a user-centered UI for the app? How did your UI designs keep users in mind? Why were your designs successful?
 ### How did you approach the process of coding your app? What techniques or strategies did you use? How could those be applied in the future?
 ### How did you test to ensure your code was functional? Why is this process important and what did it reveal?
