@@ -1,5 +1,5 @@
-# CS-360
-## The instructions said upload zip, but the file size was to large. So I committed and pushed project to repo.
+# <u>CS-360</u>
+# The instructions said upload zip, but the file size was to large. So I committed and pushed project to repo.
 
 #### Briefly summarize the requirements and goals of the app you developed. What user needs was this app designed to address?
 ##### The
