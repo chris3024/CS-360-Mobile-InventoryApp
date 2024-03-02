@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+// Christopher Sharp
 
 // Code for verifying username and password was found here..
 // https://stackoverflow.com/questions/55124242/verifying-username-and-password-in-sqlite
